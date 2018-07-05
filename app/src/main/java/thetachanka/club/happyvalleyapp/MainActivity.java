@@ -1,48 +1,61 @@
 package thetachanka.club.happyvalleyapp;
 
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Statement;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 public class MainActivity extends AppCompatActivity {
-    private Statement statement;
-    private Connection con;
-    private ResultSet result;
-    private ResultSetMetaData rsMetaData;
+    TextView text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getSupportActionBar().setTitle("Timetable 2018");
         setContentView(R.layout.activity_main);
-        try {
-            con = DriverManager.getConnection("jdbc:mysql://domain-name:3306/hvyg", "caleb", "doesn't work ATM");
-            statement = con.createStatement();
-            result = statement.executeQuery("SELECT day, dayNo, month, activity, location, meditation FROM timetable;");
-            rsMetaData = result.getMetaData();
-        } catch (SQLException e) {
-            unableToConnect();
-        }
+        readHTML();
     }
 
-    public void loadTimeTable() {
-        TextView ttt = findViewById(R.id.timetable_text);
-        try {
-            ttt.setText(rsMetaData.getColumnName(1));
-        } catch (SQLException e) {
-            unableToConnect();
-        }
-
+    /**
+     * Executes the ConnectToWebpage onPostExecute method to read text from the webpage
+     */
+    public void readHTML() {
+        new ConnectToWebpage().execute();
     }
 
-    public void unableToConnect() {
-        TextView tv = findViewById(R.id.timetable_text);
-        tv.setText("Unable to connect");
+    public class ConnectToWebpage extends AsyncTask<Void, Void, Void> {
+        String words;
+
+        /**
+         * Reads the text from http://thetachanka.club:5000
+         * @param params
+         * @return null
+         */
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                Document doc = Jsoup.connect("http://thetachanka.club:5000").get();
+                words = doc.text();
+            } catch (Exception e) {text.setText("unable to connect");}
+            return null;
+        }
+
+        /**
+         * Sets the text of the TextView to the webpages text
+         * @param aVoid
+         */
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            text.setText(words);
+        }
     }
 }
