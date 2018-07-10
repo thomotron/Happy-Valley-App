@@ -33,9 +33,9 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="backgroundImage" value="$PROJECT_DIR$/app/src/main/res/drawable/background.png" />
+                                      <entry key="backgroundImage" value="$USER_HOME$/Pictures/HVYG/background.png" />
                                       <entry key="backgroundLayerName" value="ic_launcher_background" />
-                                      <entry key="foregroundImage" value="$PROJECT_DIR$/app/src/main/res/drawable/HV.png" />
+                                      <entry key="foregroundImage" value="$USER_HOME$/Pictures/HVYG/HV.png" />
                                       <entry key="foregroundLayerName" value="ic_launcher_foreground" />
                                       <entry key="outputName" value="hv_icon" />
                                     </map>

@@ -4,8 +4,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout"
+    android:background="@drawable/orange_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".LoginPage">
 
     <com.goodiebag.pinview.Pinview
@@ -16,17 +18,17 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        app:cursorVisible="false"
-        app:forceKeyboard="false"
-        app:hint="0"
-        app:inputType="number"
+        app:cursorVisible="true"
+        app:forceKeyboard="true"
+        app:hint="1"
+        app:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:password="true"
         app:pinHeight="40dp"
-        app:pinLength="4"
+        app:pinLength="5"
         app:pinWidth="40dp" />
 
     <TextView
@@ -39,7 +41,7 @@
         android:text="Incorrect Password"
         android:textAlignment="center"
         android:textAllCaps="true"
-        android:textColor="#F00"
+        android:textColor="#ff0000"
         android:textStyle="bold"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/pin"

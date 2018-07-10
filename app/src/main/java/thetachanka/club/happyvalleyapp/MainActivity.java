@@ -11,7 +11,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setTitle("Timetable 2018");
+        getSupportActionBar().setTitle("Upcoming Event");
         setContentView(R.layout.activity_main);
 
         String timetable_url = "http://thetachanka.club:5000/timetable/";
@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         timetableButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                getSupportActionBar().setTitle("Timetable");
                 findViewById(R.id.web_timetable).setVisibility(View.VISIBLE);
                 findViewById(R.id.web_images).setVisibility(View.INVISIBLE);
                 findViewById(R.id.web_event).setVisibility(View.INVISIBLE);
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         imagesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                getSupportActionBar().setTitle("Happy Valley Images");
                 findViewById(R.id.web_timetable).setVisibility(View.INVISIBLE);
                 findViewById(R.id.web_images).setVisibility(View.VISIBLE);
                 findViewById(R.id.web_event).setVisibility(View.INVISIBLE);
@@ -54,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         nextEventButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                getSupportActionBar().setTitle("Upcoming Event");
                 findViewById(R.id.web_timetable).setVisibility(View.INVISIBLE);
                 findViewById(R.id.web_images).setVisibility(View.INVISIBLE);
                 findViewById(R.id.web_event).setVisibility(View.VISIBLE);
